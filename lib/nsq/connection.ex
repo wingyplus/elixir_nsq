@@ -156,7 +156,7 @@ defmodule NSQ.Connection do
   # calling process. we can use that opportunity to update the messages in
   # flight.
   @spec handle_info({reference, {:message_done, NSQ.Message.t(), any}}, state) ::
-          {:noreply, T.conn_state()}
+          {:noreply, state}
   def handle_info({:message_done, _msg, ret_val}, state) do
     state |> MessageHandling.update_conn_stats_on_message_done(ret_val)
     {:noreply, state}
